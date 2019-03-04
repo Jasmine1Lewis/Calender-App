@@ -7,46 +7,43 @@ file.close
 #initial loop through variable will only loop through each hash so we have to
 #do an additional loop through each hash
 
+class Task
+  attr_accessor :name, :day, :time, :duration
 
+  def initialize(day, name, time, duration)
+    @day = day
+    @name = name
+    @time = time
+    @duration = duration
+  end
 
-days_tasks = {}
-
-for element in all_tasks
-  for key, value in element
-    if key == :day
-    days_tasks[value] = element
-    element.delete(key)
-    end
+  def show_all
+    puts "Name: #{name}, day: #{day}, time: #{time}, duration: #{duration}."
   end
 end
+#at the moment i've created an inital loop through the json file
+#what this means is that once we save data externally we can read it again
+#and have it saved for the future.
 
+#i've created an empty hash
+days_tasks = []
+#we loop through the file that has been read
+for element in all_tasks
+  new_task = Task.new(element[:day], element[:name], element[:time], element[:duration])
+  puts new_task.show_all
+end
+#then the hash is sorted by its key, in this case it is by day indexed at 0
 days_tasks = days_tasks.sort.to_h
 puts days_tasks
 
-=begin
-
-class Task
-  attr_accessor :day, :place, :time, :duration
-
-  def init(day, place, time, duration)
-    @day = day
-    @place = place
-    @time = time
-    @duration = duration
-  end
-end
-
-class Task
-  attr_accessor :day, :place, :time, :duration
-
-  def init(day, place, time, duration)
-    @day = day
-    @place = place
-    @time = time
-    @duration = duration
-  end
+for key, value in days_tasks
 
 end
+
+
+
+
+
 
 =begin
 
